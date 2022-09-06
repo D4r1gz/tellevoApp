@@ -17,11 +17,29 @@
   font-size: 16px;
   line-height: 22px;
 
-  color: #8c8c8c;
+  color: 
+  #f5f5f5;
 
   margin: 0;
 }
 
-#container a {
-  text-decoration: none;
+
+.arriba{
+  --background: #1e90ff;
+  --text-align: center;
+  box-shadow: #000000;
+  text-overflow: ellipsis;
+}
+
+.mat-raised-button {
+  margin: 8px 8px 8px 0;
+  
+}
+
+.centro{
+  --background: #0f82f4;
+}
+.btn{
+  color: azure;
+  box-shadow: #000000;
 }
