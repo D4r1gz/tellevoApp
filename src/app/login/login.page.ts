@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { RouterLinkDelegateDirective } from '@ionic/angular/directives/navigation/router-link-delegate';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   usuario:string;
   password:string;
+  result:number;
 
   constructor(public toastController:ToastController, private router:Router) {}
   siguiente(){
@@ -19,22 +21,29 @@ export class LoginPage implements OnInit {
     let navigationExtras: NavigationExtras={
       state:{usuario:this.usuario}
     }
+    if(this.result==1 || this.result==2){
+      this.router.navigate(['/login'])
+    }else if(this.result==3){
+      this.router.navigate(['/inicio'], navigationExtras)
+    }
 
-    this.router.navigate(['/inicio'], navigationExtras)
+    
   }
   ngOnInit() {
   }
   validar(user: string, pasword: string){
-    if(user =="" ){
+    if(user ==null ){
       console.log("1")
-      this.presentToast
+      this.presentToast()
+      return this.result=1;
       
-    }else if (pasword=="") {
+    }else if (pasword==null) {
       console.log("2")
-      this.presentToast
+      this.presentToast()
+      return this.result=2;
     } else {
       console.log("3")
-      return true
+      return this.result=3;
     }
 
 
@@ -51,5 +60,8 @@ export class LoginPage implements OnInit {
       toast.present();
     }
 
-
+    todos(){
+      this.validar(this.usuario, this.password)
+      this.siguiente()
+    }
 }
